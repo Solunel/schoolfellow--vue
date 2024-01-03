@@ -9,7 +9,7 @@
 
         let loginUser =reactive({
                 username:"",
-                userPwd:""
+                password:""
         })
 
         //提示信息
@@ -32,7 +32,7 @@
        function checkUserPwd(){
             let userPwdReg = /^[0-9]{6}$/
 
-            if(!userPwdReg.test(loginUser.userPwd)){
+            if(!userPwdReg.test(loginUser.password)){
                 userPwdMsg.value="格式有误"
                 return false
             }
@@ -48,22 +48,19 @@
             if(!(flag1 && flag2)){
                 return 
             }
-           let {data} = await request.post("user/login",loginUser)
-           if(data.code == 200 ){
+         let {data} = await request.post("/login",loginUser)
+           if(data.code == 1 ){
                 alert("登录成功")
                 console.log(data)
                 // 获得登录的用户信息,更新到pinia中
-                sysUser.uid =data.data.loginUser.uid
-                sysUser.username = data.data.loginUser.username
+                // sysUser.uid =data.data.loginUser.uid
+                // sysUser.username = data.data.loginUser.username
+             sysUser.jwt =data.data
+             console.log(sysUser.jwt)
                 // 跳转到showSchedule
                 router.push("/showSchedule")
-           } else if( data.code == 503){
-                alert("密码有误")
-
-           }else if (data.code == 501 ){
-                alert("用户名有误")
-           }else {
-                alert("未知错误")
+           } else{
+             alert("登录失败，请检查用户名与密码是否正确")
            }
            
        }
@@ -88,7 +85,7 @@
                 <td>
                     <input class="ipt" 
                     type="password" 
-                    v-model="loginUser.userPwd"
+                    v-model="loginUser.password"
                     @blur="checkUserPwd()">
                     <span id="userPwdMsg" v-text="userPwdMsg"></span>
                 </td>

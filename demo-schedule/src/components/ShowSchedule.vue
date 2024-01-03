@@ -15,8 +15,9 @@
     // 查询当前用户所有日程信息 并展示到视图的方法
     async function showSchedule(){
         // 发送异步请求,获得当前用户的所有日程记录
-        let {data} = await request.get("schedule/findAllSchedule",{params:{"uid":sysUser.uid}})
-        schedule.itemList = data.data.itemList
+      let {data} = await request.get("/schoolfellow",{params:{}})
+      schedule.itemList = data.data.rows
+      console.log(schedule.itemList)
     }
     // 为当前用户增加一个空的日程记录
     async function addItem(){

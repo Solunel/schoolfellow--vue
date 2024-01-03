@@ -8,7 +8,7 @@
 
     let registUser = reactive({
         username:"",
-        userPwd:""
+        password:""
     })
     let usernameMsg=ref('')
     let userPwdMsg=ref('')
@@ -21,8 +21,8 @@
             return false
         }
         // 发送异步请求   继续校验用户名是否被占用
-        let {data} = await request.post(`user/checkUsernameUsed?username=${registUser.username}`)
-        if(data.code != 200){
+      let {data} = await request.get(`/register/checkUserNameUsed?username=${registUser.username}`)
+        if(data.code != 1){
             usernameMsg.value="用户名占用"
             return false
         }
@@ -32,7 +32,7 @@
 
     function checkUserPwd(){
         let userPwdReg = /^[0-9]{6}$/
-        if(!userPwdReg.test(registUser.userPwd)){
+        if(!userPwdReg.test(registUser.password)){
             userPwdMsg.value="格式有误"
             return false
         }
@@ -46,7 +46,7 @@
             reUserPwdMsg.value="格式有误"
             return false
         }
-        if(registUser.userPwd != reUserPwd.value){
+        if(registUser.password != reUserPwd.value){
             reUserPwdMsg.value="两次密码不一致"
             return false
         }
@@ -76,7 +76,7 @@
 
     function clearForm(){
         registUser.username=""
-        registUser.userPwd=""
+        registUser.password=""
         usernameMsg.value=""
         userPwdMsg.value=""
         reUserPwd.value=""
@@ -112,7 +112,7 @@
                 id="userPwdInput" 
                 type="password" 
                 name="userPwd" 
-                v-model="registUser.userPwd"
+                v-model="registUser.password"
                 @blur="checkUserPwd()">
                 <span id="userPwdMsg" class="msg" v-text="userPwdMsg"></span>
             </td>

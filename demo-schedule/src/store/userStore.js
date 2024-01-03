@@ -6,7 +6,8 @@ export const defineUser=defineStore(
         state:()=>{
             return{
                 uid:0,
-                username:''
+                username:'',
+                jwt:''
             }
         },
         getters:{
