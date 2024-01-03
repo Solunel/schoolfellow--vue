@@ -24,7 +24,7 @@
   <div>
     <h1 class="ht">欢迎使用校友管理信息系统</h1>
     <div>
-      <div  class="optionDiv" v-if="sysUser.username == ''">
+      <div  class="optionDiv" v-if="sysUser.jwt == ''">
         <router-link to="/login">
           <button class="b1s">登录</button>
         </router-link>   
@@ -35,7 +35,7 @@
 
 
       <div   class="optionDiv" v-else>
-        欢迎 {{ sysUser.username }}   
+<!--        欢迎 {{ sysUser.username }}   -->
         <button class="b1b" @click="logout()">退出登录</button> 
         <router-link to="/showSchedule">
           <button class="b1b">查看我的信息</button>

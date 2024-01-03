@@ -14,11 +14,24 @@
     })
     // 查询当前用户所有日程信息 并展示到视图的方法
     async function showSchedule(){
-        // 发送异步请求,获得当前用户的所有日程记录
-      let {data} = await request.get("/schoolfellow",{params:{}})
+        // 发送异步请求,获得当前用户的所有记录
+      let {data} = await request.get("/schoolfellow", {
+        params: {
+          page: 1, // 页码
+          pageSize: 10, // 每页显示的条数
+          name: "", // 姓名
+          gender: 1, // 性别
+          begin: "", // 开始日期
+          end: "" // 结束日期
+        },
+        headers: {
+          "token": sysUser.jwt
+        }
+      });
       schedule.itemList = data.data.rows
       console.log(schedule.itemList)
     }
+
     // 为当前用户增加一个空的日程记录
     async function addItem(){
          let{data} = await request.get('schedule/addDefaultSchedule',{params:{"uid":sysUser.uid}})  
@@ -35,7 +48,7 @@
     async function updateItem(index){
         // 找到要修改的数据 发送给服务端,更新进入数据库即可
         let {data} =  await request.post("schedule/updateSchedule",schedule.itemList[index])
-        if(data.code == 200){
+        if(data.code == 1){
             showSchedule()
             alert("更新成功")
         }else{
@@ -46,7 +59,7 @@
     async function removeItem(index){
         let sid =schedule.itemList[index].sid
         let {data} = await request.get(`schedule/removeSchedule`,{params:{"sid":sid}})
-        if(data.code == 200){
+        if(data.code == 1){
             showSchedule()
             alert("删除成功")
         }else{
