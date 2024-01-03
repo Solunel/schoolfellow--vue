@@ -74,12 +74,6 @@ async function handleUpdate(row) {
   });
   form1.id = id;
 
-  // form1.name=data.date.name
-  // form1.gender=data.date.gender
-  // form1.phone=data.date.phone
-  // form1.email=data.date.email
-  // form1.workplace=data.date.workplace
-  // form1.major=data.date.major
   dialogFormVisible1.value = true
 
   form1.name=data.date.name
@@ -206,17 +200,6 @@ onMounted(async () => {
               </el-select>
             </el-form-item>
 
-            <!--            <el-form-item label="入学时间">-->
-            <!--              <el-date-picker-->
-            <!--                  v-model="searchForm.create_time"-->
-            <!--                  type="daterange"-->
-            <!--                  range-separator="至"-->
-            <!--                  start-placeholder="开始日期"-->
-            <!--                  end-placeholder="结束日期"-->
-            <!--              >-->
-            <!--              </el-date-picker>-->
-            <!--            </el-form-item>-->
-
             <el-form-item>
               <el-button type="primary" @click="onSubmit">查询</el-button>
             </el-form-item>
@@ -246,13 +229,6 @@ onMounted(async () => {
 
           </el-table>
 
-          <!-- 分页组件 -->
-          <!--          <el-pagination-->
-          <!--              background-->
-          <!--              layout="total,sizes,prev,pager,next,jumper"-->
-          <!--              @size-change="handleSizeChange"-->
-          <!--              :total="schoolfellows.total"-->
-          <!--          ></el-pagination>-->
 
           <el-pagination
               background

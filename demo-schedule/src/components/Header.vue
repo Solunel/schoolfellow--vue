@@ -1,10 +1,10 @@
 <script setup>
   /* 导入pinia数据 */
   import {defineUser} from "../store/userStore.js"
-  import {defindSchedule} from "../store/scheduleStore.js"
+
 
   let sysUser = defineUser()
-  let schedule = defindSchedule()
+
 
 
   import {useRouter} from 'vue-router'
@@ -13,7 +13,6 @@
   function logout(){
     // 清除所有pinia数据
     sysUser.$reset()
-    schedule.$reset()
     // 跳转到登录页
     router.push("/login")
   }

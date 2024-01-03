@@ -56,22 +56,22 @@
 
     // 注册的方法
     async function regist(){
-        // 校验所有的输入框是否合法
-        let flag1 =await checkUsername()
-        let flag2 =await checkUserPwd()
-        let flag3 =await checkReUserPwd()
-        if(flag1 && flag2 && flag3){
-          let  {data}= await request.post("user/regist",registUser)
-          if(data.code === 1){
-            // 注册成功跳转 登录页
-            alert("注册成功,快去登录吧")
-            router.push("/login")
-          }else{
-            alert("抱歉,用户名被抢注了")
-          }
+      // 校验所有的输入框是否合法
+      let flag1 =await checkUsername()
+      let flag2 =await checkUserPwd()
+      let flag3 =await checkReUserPwd()
+      if(flag1 && flag2 && flag3){
+        let  {data}= await request.post("/register",registUser)
+        if(data.code === 1){
+          // 注册成功跳转 登录页
+          alert("注册成功,快去登录吧")
+          router.push("/login")
         }else{
-            alert("校验不通过,请求再次检查数据")
+          alert("抱歉,用户名被抢注了")
         }
+      }else{
+        alert("校验不通过,请求再次检查数据")
+      }
     }
 
     function clearForm(){

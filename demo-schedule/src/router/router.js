@@ -15,7 +15,7 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            redirect: "/ShowSchedule"
+            redirect: "/login"
         },
         {
             path: "/login",
@@ -33,7 +33,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.path === '/project') {
-        if (sysUser.username === '') {
+        if (sysUser.jwt === '') {
             next("/login")
         } else {
             next()
