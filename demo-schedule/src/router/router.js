@@ -2,7 +2,6 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 // 导入组件
 import Login from '../components/Login.vue'
 import Regist from '../components/Regist.vue'
-import ShowSchedule from '../components/ShowSchedule.vue'
 import project from '../components/project.vue'
 
 import pinia from "../pinia.js"
@@ -24,9 +23,6 @@ const router = createRouter({
         }, {
             path: "/regist",
             component: Regist
-        }, {
-            path: "/ShowSchedule",
-            component: ShowSchedule
         },
         {
             path: "/project",
@@ -36,8 +32,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path == '/ShowSchedule') {
-        if (sysUser.username == '') {
+    if (to.path === '/project') {
+        if (sysUser.username === '') {
             next("/login")
         } else {
             next()

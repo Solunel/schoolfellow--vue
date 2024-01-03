@@ -22,7 +22,7 @@
         }
         // 发送异步请求   继续校验用户名是否被占用
       let {data} = await request.get(`/register/checkUserNameUsed?username=${registUser.username}`)
-        if(data.code != 1){
+        if(data.code !== 1){
             usernameMsg.value="用户名占用"
             return false
         }
@@ -46,7 +46,7 @@
             reUserPwdMsg.value="格式有误"
             return false
         }
-        if(registUser.password != reUserPwd.value){
+        if(registUser.password !== reUserPwd.value){
             reUserPwdMsg.value="两次密码不一致"
             return false
         }
@@ -62,7 +62,7 @@
         let flag3 =await checkReUserPwd()
         if(flag1 && flag2 && flag3){
           let  {data}= await request.post("user/regist",registUser)
-          if(data.code == 1){
+          if(data.code === 1){
             // 注册成功跳转 登录页
             alert("注册成功,快去登录吧")
             router.push("/login")
@@ -144,21 +144,21 @@
        .ht{
             text-align: center;
             color: cadetblue;
-            font-family: 幼圆;
+            font-family: 幼圆,serif;
         }
         .tab{
             width: 500px;
             border: 5px solid cadetblue;
-            margin: 0px auto;
+            margin: 0 auto;
             border-radius: 5px;
-            font-family: 幼圆;
+            font-family: 幼圆,serif;
         }
         .ltr td{
             border: 1px solid  powderblue;
 
         }
         .ipt{
-            border: 0px;
+            border: 0;
             width: 50%;
 
         }

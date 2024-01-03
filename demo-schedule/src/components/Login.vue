@@ -49,12 +49,10 @@
                 return 
             }
          let {data} = await request.post("/login",loginUser)
-           if(data.code == 1 ){
+           if(data.code === 1 ){
                 alert("登录成功")
                 console.log(data)
-                // 获得登录的用户信息,更新到pinia中
-                // sysUser.uid =data.data.loginUser.uid
-                // sysUser.username = data.data.loginUser.username
+                // 获得登录的令牌,更新到pinia中
              sysUser.jwt =data.data
              console.log(sysUser.jwt)
                 // 跳转到showSchedule
@@ -107,20 +105,20 @@
         .ht{
             text-align: center;
             color: cadetblue;
-            font-family: 幼圆;
+            font-family: 幼圆,serif;
         }
         .tab{
             width: 500px;
             border: 5px solid cadetblue;
-            margin: 0px auto;
+            margin: 0 auto;
             border-radius: 5px;
-            font-family: 幼圆;
+            font-family: 幼圆,serif;
         }
         .ltr td{
             border: 1px solid  powderblue;
         }
         .ipt{
-            border: 0px;
+            border: 0;
             width: 50%;
         }
         .btn1{

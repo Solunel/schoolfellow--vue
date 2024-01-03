@@ -25,7 +25,7 @@ const formLabelWidth = '140px'
 
 
 const form = reactive({
-  id:'',
+  id: '',
   name: "",
   gender: "",
   phone: "",
@@ -35,7 +35,7 @@ const form = reactive({
 })
 
 const form1 = reactive({
-  id:'',
+  id: '',
   name: "",
   gender: "",
   phone: "",
@@ -43,9 +43,6 @@ const form1 = reactive({
   workplace: "",
   major: ""
 })
-
-
-
 
 
 function onSubmit() {
@@ -60,14 +57,14 @@ async function handleDelete(row) {
       "token": sysUser.jwt
     }
   });
-  if(data.code === 1){
+  if (data.code === 1) {
     // 注册成功跳转 登录页
     alert("删除成功")
   }
   await show();
 }
 
-async function handleUpdate(row){
+async function handleUpdate(row) {
 
   let id = row.id;
   let {data} = await request.get(`/schoolfellow/${id}`, {
@@ -75,9 +72,7 @@ async function handleUpdate(row){
       "token": sysUser.jwt
     }
   });
-form1.id=id;
-
-  dialogFormVisible1.value = true
+  form1.id = id;
 
   // form1.name=data.date.name
   // form1.gender=data.date.gender
@@ -85,21 +80,22 @@ form1.id=id;
   // form1.email=data.date.email
   // form1.workplace=data.date.workplace
   // form1.major=data.date.major
+  dialogFormVisible1.value = true
 
+  form1.name=data.date.name
 }
 
 
-
-function handleSizeChange(val) {
+function handleSizeChange() {
   show()
 }
 
 
-async function MyUpdate(){
+async function MyUpdate() {
   try {
     // 异步请求
     let {data} = await request.post("/schoolfellow/update", {
-      id:form1.id,
+      id: form1.id,
       name: form1.name,
       gender: form1.gender,
       phone: form1.phone,
@@ -113,10 +109,10 @@ async function MyUpdate(){
     });
 
     // 处理 response
-    console.log('成功修改:', response.data);
+    console.log('成功修改:', data.code);
   } catch (error) {
     // 处理错误
-    console.error('添加出错:', error);
+    console.error('添加出错');
     // 在这里添加适当的错误处理逻辑
   } finally {
     // 不论异步请求成功或失败，都会执行的代码
@@ -243,8 +239,8 @@ onMounted(async () => {
 
             <el-table-column label="操作">
               <template v-slot="scope">
-                <el-button type="primary" size="mini" @click="handleUpdate(scope.row)" >修改</el-button>
-                <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+                <el-button type="primary" size="default" @click="handleUpdate(scope.row)">修改</el-button>
+                <el-button type="danger" size="default" @click="handleDelete(scope.row)">删除</el-button>
               </template>
             </el-table-column>
 
@@ -306,12 +302,7 @@ onMounted(async () => {
           </el-dialog>
 
 
-
-
-
-
-
-<!--            更新弹窗-->
+          <!--            更新弹窗-->
           <el-dialog v-model="dialogFormVisible1" title="Shipping address">
             <el-form :model="form1">
               <el-form-item label="姓名" :label-width="formLabelWidth">
@@ -345,21 +336,6 @@ onMounted(async () => {
       </span>
             </template>
           </el-dialog>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         </el-main>
