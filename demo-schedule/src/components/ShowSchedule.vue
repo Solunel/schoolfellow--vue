@@ -35,7 +35,7 @@
     // 为当前用户增加一个空的日程记录
     async function addItem(){
          let{data} = await request.get('schedule/addDefaultSchedule',{params:{"uid":sysUser.uid}})  
-         if(data.code == 200){
+         if(data.code == 1){
             // 增加成功,刷新页面数据
             showSchedule()
          }else{
@@ -48,7 +48,7 @@
     async function updateItem(index){
         // 找到要修改的数据 发送给服务端,更新进入数据库即可
         let {data} =  await request.post("schedule/updateSchedule",schedule.itemList[index])
-        if(data.code == 1){
+        if(data.code === 1){
             showSchedule()
             alert("更新成功")
         }else{
@@ -59,7 +59,7 @@
     async function removeItem(index){
         let sid =schedule.itemList[index].sid
         let {data} = await request.get(`schedule/removeSchedule`,{params:{"sid":sid}})
-        if(data.code == 1){
+        if(data.code === 1){
             showSchedule()
             alert("删除成功")
         }else{

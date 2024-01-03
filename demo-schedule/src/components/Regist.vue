@@ -62,7 +62,7 @@
         let flag3 =await checkReUserPwd()
         if(flag1 && flag2 && flag3){
           let  {data}= await request.post("user/regist",registUser)
-          if(data.code == 200){
+          if(data.code == 1){
             // 注册成功跳转 登录页
             alert("注册成功,快去登录吧")
             router.push("/login")

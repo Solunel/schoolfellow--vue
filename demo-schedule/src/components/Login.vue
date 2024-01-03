@@ -58,7 +58,7 @@
              sysUser.jwt =data.data
              console.log(sysUser.jwt)
                 // 跳转到showSchedule
-                router.push("/showSchedule")
+                router.push("/project")
            } else{
              alert("登录失败，请检查用户名与密码是否正确")
            }

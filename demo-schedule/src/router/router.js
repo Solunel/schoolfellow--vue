@@ -3,6 +3,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 import Login from '../components/Login.vue'
 import Regist from '../components/Regist.vue'
 import ShowSchedule from '../components/ShowSchedule.vue'
+import project from '../components/project.vue'
 
 import pinia from "../pinia.js"
 import {defineUser} from "../store/userStore.js";
@@ -26,6 +27,10 @@ const router = createRouter({
         }, {
             path: "/ShowSchedule",
             component: ShowSchedule
+        },
+        {
+            path: "/project",
+            component: project
         }
     ]
 })
